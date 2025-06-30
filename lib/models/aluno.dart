@@ -1,6 +1,6 @@
 class Aluno {
   final String id;
-  final String name;
+  final String nome;
   final String email;
   final String telefone;
   final String latitude;
@@ -8,7 +8,7 @@ class Aluno {
 
   Aluno({
     required this.id,
-    required this.name,
+    required this.nome,
     required this.email,
     required this.telefone,
     required this.latitude,
@@ -18,7 +18,7 @@ class Aluno {
   factory Aluno.fromJson(Map<String, dynamic> json) {
     return Aluno(
       id: json['id']?.toString() ?? '',
-      name: json['name'] ?? '',
+      nome: json['name'] ?? '',
       email: json['email'] ?? '',
       telefone: json['telefone'] ?? '',
       latitude: json['latitude'] ?? '',
@@ -29,7 +29,7 @@ class Aluno {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name': name,
+      'nome': name,
       'email': email,
       'telefone': telefone,
       'latitude': latitude,
