@@ -38,4 +38,28 @@ class KallerAlunos with ChangeNotifier {
       return [];
     }
   }
+
+  Future<bool> salvarAluno(String id, String nome, String telefone, String email, String latitude, String longitude) async {
+    final uri = Uri.parse('http://apis.kaller.com.br/v1/app/gravaraluno?id=' + id + '&nome=' + nome + '&email=' + email + '&telefone=' + telefone + '&latitude=' + latitude + '&longitude=' + longitude);
+
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        _message = null;
+        notifyListeners();
+
+        return true;
+      } else {
+        final errorData = json.decode(response.body);
+        _message = errorData['message'] ?? 'Erro desconhecido';
+        notifyListeners();
+        return false;
+      }
+    } catch (e) {
+      _message = 'Erro na conexão: $e';
+      notifyListeners();
+      return false;
+    }
+  }
 }
