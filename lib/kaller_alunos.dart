@@ -62,4 +62,28 @@ class KallerAlunos with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> deleteAluno(String id) async {
+    final uri = Uri.parse('http://apis.kaller.com.br/v1/app/deletealuno?id=' + id);
+
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        _message = null;
+        notifyListeners();
+
+        return true;
+      } else {
+        final errorData = json.decode(response.body);
+        _message = errorData['message'] ?? 'Erro desconhecido';
+        notifyListeners();
+        return false;
+      }
+    } catch (e) {
+      _message = 'Erro na conexão: $e';
+      notifyListeners();
+      return false;
+    }
+  }
 }
