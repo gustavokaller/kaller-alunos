@@ -18,7 +18,7 @@ class Aluno {
   factory Aluno.fromJson(Map<String, dynamic> json) {
     return Aluno(
       id: json['id']?.toString() ?? '',
-      nome: json['name'] ?? '',
+      nome: json['nome'] ?? '',
       email: json['email'] ?? '',
       telefone: json['telefone'] ?? '',
       latitude: json['latitude'] ?? '',
@@ -29,7 +29,7 @@ class Aluno {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'nome': name,
+      'nome': nome,
       'email': email,
       'telefone': telefone,
       'latitude': latitude,
